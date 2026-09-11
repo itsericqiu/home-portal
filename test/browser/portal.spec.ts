@@ -121,15 +121,22 @@ test("malformed catalog is disclosed and never replaced with samples", async ({ 
   await expect(page.getByText("Hermes Agent")).toHaveCount(0);
 });
 
-test("stale status is withheld and recovers after refresh", async ({ page }, testInfo) => {
+test("stale status is withheld and recovers after refresh", async ({ page, context }, testInfo) => {
   test.skip(testInfo.project.name !== "desktop", "one recovery pass is sufficient");
   let stale = true;
-  await page.unroute("**/.well-known/home-stack/status.json");
-  await page.route("**/.well-known/home-stack/status.json", (route) => {
+  const serveStatus = (route: Route) => {
     const payload = currentStatus();
     if (stale) payload.generated_at = "2026-01-01T00:00:00Z";
     return route.fulfill({ json: payload });
-  });
+  };
+  await page.unroute("**/.well-known/home-stack/status.json");
+  await page.route("**/.well-known/home-stack/status.json", serveStatus);
+  // The service worker fetches status.json NetworkFirst once it claims the page.
+  // page.route never sees requests a service worker makes; on a slow runner the
+  // worker activates between first paint and the refresh click, the stub is
+  // bypassed, and the cached (stale) copy is served back. Context-level routes
+  // do intercept service-worker requests, so register the same stub there.
+  await context.route("**/.well-known/home-stack/status.json", serveStatus);
   await page.goto("/");
   await expect(page.getByText("Status is stale.")).toBeVisible();
   stale = false;
