@@ -35,21 +35,32 @@ runtime it requests the catalog and status from fixed, same-origin well-known
 paths, discovers launch URLs—including Admin—from the catalog, and renders
 unknown services automatically.
 
-To use it with another Home Stack installation:
+To use it with a Home Stack installation:
 
 ```bash
 npm ci
-cp .home-stack.example.yaml .home-stack.yaml
-# Edit only the local host value in .home-stack.yaml.
 npm run check
 npm run build
 ```
 
-The local `.home-stack.yaml` is intentionally ignored so an installation's
-hostname is not published. Home Stack must serve the resulting `dist/` and
-route the two schema-v1 projections through the same Portal origin. See the
-complete [installation guide](docs/INSTALLATION.md) for registry, routing,
-customization, compatibility, and security requirements.
+Then register the built `dist/` in your Home Stack profile as a static service
+**named `portal`** (that is the name Home Stack attaches the two projection
+routes to):
+
+```yaml
+  portal:
+    display_name: "Portal"
+    kind: "static"
+    type: "static"
+    subdomain: portal
+    root: "~/github/home-portal/dist"
+    health:
+      http_url: "https://portal.<your-domain>/"
+```
+
+Home Stack serves `dist/` and routes the two schema-v1 projections through the
+same Portal origin. See the complete [installation guide](docs/INSTALLATION.md)
+for routing, customization, compatibility, and security requirements.
 
 ## Product behavior
 
@@ -115,7 +126,7 @@ npm ci
 npm run dev
 ```
 
-The development server listens on `http://127.0.0.1:31520/` and uses the
+The development server listens on `http://127.0.0.1:31600/` and uses the
 dev-only v1 fixtures by default. To exercise honest endpoint failure locally:
 
 ```bash
@@ -143,18 +154,16 @@ Home Stack owns the canonical JSON Schemas under `schemas/portal/`; this repo
 keeps consumer mirrors under `schemas/`. `npm run check:schema-sync` compares
 the two sibling checkouts when Home Stack is available at `../home-stack`.
 Portal's standalone CI validates its mirrors and fixtures without requiring a
-second private checkout. CI runs unit, contract, build, distribution, and
+sibling checkout. CI runs unit, contract, build, distribution, and
 browser checks; Dependabot proposes pinned npm and GitHub Actions updates
 weekly.
 
 ## Deployment and rollback
 
-The reviewed Home Stack integration, cutover checklist, live verification, and
+The Home Stack integration, cutover checklist, live verification, and
 recoverable rollback procedure are in
-[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). Copy
-`.home-stack.example.yaml` to the ignored `.home-stack.yaml` for local
-descriptive metadata; the authoritative production route stays in Home Stack’s
-registry and generated Caddyfile.
+[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md). The authoritative production route
+is the `portal` entry in Home Stack’s registry and its generated Caddyfile.
 
 ## Security
 

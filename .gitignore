@@ -7,4 +7,3 @@ playwright-report/
 .env
 .env.*
 !.env.example
-.home-stack.yaml

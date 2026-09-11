@@ -40,17 +40,26 @@ The complete deployable application is written to `dist/`. Do not serve the
 repository root, test fixtures, source maps from another directory, or
 `node_modules/` as the Portal document root.
 
-## Local deployment metadata
+## Registry entry
 
-Copy the example and set the Portal hostname used by your Home Stack profile:
+Register the built `dist/` in your Home Stack profile (`profiles/<name>/services.yaml`)
+as a static service. The entry **must be named `portal`**: Home Stack's engine
+attaches the two projection routes to that service name and no other.
 
-```bash
-cp .home-stack.example.yaml .home-stack.yaml
+```yaml
+  portal:
+    display_name: "Portal"
+    kind: "static"
+    type: "static"
+    subdomain: portal
+    root: "~/github/home-portal/dist"
+    health:
+      http_url: "https://portal.<your-domain>/"
 ```
 
-`.home-stack.yaml` is ignored because its `host` belongs to one installation.
-It is descriptive project metadata, not a replacement for the Home Stack
-service registry.
+Then `hs deploy --preview`, `hs sync`, and Home Stack's documented reload
+procedure. Nothing in this repository configures the hostname; it comes from
+your Home Stack profile.
 
 ## Home Stack integration
 
