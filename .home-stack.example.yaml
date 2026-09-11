@@ -1,0 +1,10 @@
+# Copy to .home-stack.yaml and set the host for your Home Stack profile.
+name: home-portal
+type: static
+mode: subdomain
+host: portal.home.example.com
+root: dist
+spa: true
+catalog_url: /.well-known/home-stack/catalog.json
+status_url: /.well-known/home-stack/status.json
+remote_access: false

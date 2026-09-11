@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#111714" />
+    <meta name="description" content="A private, read-only front door to Home Stack." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Home Stack" />
+    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <script>
+      try {
+        const preference = JSON.parse(localStorage.getItem("home-portal.preferences.v2") || "{}").theme || "system";
+        document.documentElement.dataset.theme = preference === "system"
+          ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : preference;
+      } catch {}
+    </script>
+    <style>
+      .boot-shell{display:grid;min-height:100vh;min-height:100dvh;place-content:center;place-items:center;gap:14px;background:#111714;color:#edf4ef;font:700 14px ui-rounded,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:.08em}.boot-mark{display:grid;width:58px;height:58px;place-items:center;border:1px solid #415047;border-radius:18px;background:#1a231f;color:#84ddbb;font-size:27px}.boot-pulse{width:84px;height:3px;overflow:hidden;border-radius:99px;background:#2d3933}.boot-pulse::after{display:block;width:42%;height:100%;border-radius:inherit;background:#60c6a1;content:"";animation:boot 900ms ease-in-out infinite alternate}@keyframes boot{from{transform:translateX(-10%)}to{transform:translateX(150%)}}:root[data-theme="light"] .boot-shell{background:#f2f5f1;color:#17211c}:root[data-theme="light"] .boot-mark{border-color:#bec9c1;background:#fff;color:#0f684d}@media(prefers-reduced-motion:reduce){.boot-pulse::after{animation:none}}
+    </style>
+    <title>Home Stack</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to services</a>
+    <div id="root"><main class="boot-shell" aria-busy="true"><div class="boot-mark" aria-hidden="true">⌂</div><span>HOME STACK</span><div class="boot-pulse" aria-hidden="true"></div></main></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

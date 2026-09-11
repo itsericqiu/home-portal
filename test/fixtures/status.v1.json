@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-07T18:00:10Z",
+  "overall_state": "degraded",
+  "services": {
+    "admin": { "state": "healthy", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "running", "network": "reachable", "route": "ready", "http": "healthy" } },
+    "caddy": { "state": "healthy", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "running", "network": "reachable", "route": "not_applicable", "http": "not_checked" } },
+    "dev-gateway": { "state": "healthy", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "running", "network": "reachable", "route": "not_applicable", "http": "not_checked" } },
+    "hermes": { "state": "healthy", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "running", "network": "reachable", "route": "ready", "http": "healthy" } },
+    "logrotate": { "state": "healthy", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "scheduled", "network": "not_checked", "route": "not_applicable", "http": "not_checked" } },
+    "openchamber": { "state": "healthy", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "running", "network": "reachable", "route": "ready", "http": "healthy" } },
+    "opencode": { "state": "healthy", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "running", "network": "reachable", "route": "not_applicable", "http": "not_checked" } },
+    "portal": { "state": "healthy", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "not_managed", "network": "not_checked", "route": "ready", "http": "healthy" } },
+    "unknown-tool": { "state": "unknown", "checked_at": "2026-08-07T18:00:10Z", "signals": { "process": "not_managed", "network": "not_checked", "route": "not_applicable", "http": "not_checked" } }
+  }
+}

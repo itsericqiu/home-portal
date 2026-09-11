@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-07T18:00:00Z",
+  "services": [
+    { "id": "admin", "display_name": "Home Stack Admin", "kind": "control", "url": "https://admin.home.example.com/", "scope": "tailnet", "lifecycle": "managed", "launchable": true },
+    { "id": "caddy", "display_name": "Caddy Ingress", "kind": "ingress", "url": null, "scope": "tailnet", "lifecycle": "system", "launchable": false },
+    { "id": "dev-gateway", "display_name": "Dev Gateway", "kind": "ingress", "url": null, "scope": "tailnet", "lifecycle": "managed", "launchable": false },
+    { "id": "hermes", "display_name": "Hermes Agent", "kind": "agent", "url": "https://hermes.home.example.com/", "scope": "tailnet", "lifecycle": "managed", "launchable": true },
+    { "id": "logrotate", "display_name": "Log Rotate", "kind": "scheduled", "url": null, "scope": "local", "lifecycle": "managed", "launchable": false },
+    { "id": "openchamber", "display_name": "OpenChamber", "kind": "proxy", "url": "https://opencode.home.example.com/", "scope": "tailnet", "lifecycle": "managed", "launchable": true },
+    { "id": "opencode", "display_name": "OpenCode", "kind": "backend", "url": null, "scope": "local", "lifecycle": "managed", "launchable": false },
+    { "id": "portal", "display_name": "Portal", "kind": "static", "url": "https://portal.home.example.com/", "scope": "tailnet", "lifecycle": "static", "launchable": true },
+    { "id": "unknown-tool", "display_name": "Unknown Tool", "kind": "service", "url": null, "scope": "local", "lifecycle": "external", "launchable": false }
+  ]
+}

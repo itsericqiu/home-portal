@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Home Stack">
+  <rect width="512" height="512" rx="112" fill="#111714"/>
+  <path d="M111 229 256 108l145 121v172a28 28 0 0 1-28 28h-83V304h-68v125h-83a28 28 0 0 1-28-28Z" fill="#e9f0eb"/>
+  <path d="M171 246h170" stroke="#60c6a1" stroke-width="30" stroke-linecap="round"/>
+</svg>

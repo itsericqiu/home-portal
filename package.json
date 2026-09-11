@@ -1,0 +1,45 @@
+{
+  "name": "home-portal",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 31520",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 31520",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:browser": "npm run build && playwright test",
+    "test:browser:install": "playwright install chromium",
+    "check:schema-sync": "node scripts/check-schema-sync.mjs ../home-stack/schemas/portal",
+    "check:dist": "node scripts/check-dist.mjs",
+    "check": "npm run test && npm run build && npm run check:dist"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.101.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@testing-library/jest-dom": "7.0.0",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.3",
+    "@types/node": "26.2.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "6.0.5",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "axe-core": "4.13.0",
+    "jsdom": "29.1.1",
+    "typescript": "7.0.2",
+    "vite": "8.2.1",
+    "vite-plugin-pwa": "1.3.0",
+    "vitest": "4.1.10"
+  }
+}
