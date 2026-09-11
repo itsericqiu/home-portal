@@ -20,7 +20,7 @@ Confirm the build contains `manifest.json`, `sw.js`, local PNG icons,
 and no fixture names or `/__fixtures/` URL. `npm run check:dist` automates these
 checks and enforces the 180 KiB initial JavaScript gzip budget.
 
-From `home-stack`, after re-reading `AGENTS.md` and the current diff:
+From `home-stack`, after reviewing the current diff:
 
 ```bash
 make test
@@ -33,7 +33,7 @@ The reviewed Portal-integration diff must remain limited to the versioned
 schemas, sanitized Admin GET handlers, their tests/docs, and exact Portal-host
 well-known routing. It must not expose the raw catalog, Admin API, Caddy Admin
 API, or new mutation paths. If a coordinated release also includes another
-approved service change such as Hermes, review and verify that scope separately.
+approved service change, review and verify that scope separately.
 
 ## Recoverable cutover
 
@@ -49,8 +49,7 @@ approved service change such as Hermes, review and verify that scope separately.
 6. Run `portable/home-stack/scripts/hs sync`; validate its generated Caddyfile
    before or as part of the established reload workflow.
 7. Restart only the Home Stack Admin service so the new read-only handlers are
-   active. Do not restart Hermes, OpenCode, or OpenChamber for a static Portal
-   cutover.
+   active. Do not restart other services for a static Portal cutover.
 
 Routing and Admin changes require Home Stack’s documented infrastructure
 review. No Portal deployment step reads or prints secrets.
@@ -79,7 +78,7 @@ security exclusions at the Portal origin. Then verify:
   catalog work on an iPhone-sized viewport.
 - `$ADMIN_ORIGIN` remains authenticated and contains the privileged controls;
   Portal has no mutation request or credential.
-- Portal, Admin, Hermes, OpenCode, OpenChamber, and Caddy remain healthy after
+- Portal, Admin, Caddy, and every other registered service remain healthy after
   cutover.
 
 Inspect the live UI in a desktop viewport and at both 390px and 430px. Confirm

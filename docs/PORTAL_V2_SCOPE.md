@@ -1,5 +1,7 @@
 # Portal v2 implementation scope
 
+_Historical: the scope and acceptance criteria Portal v2 was built against. Service names in the examples (e.g. Hermes) are illustrative; Portal renders any registered service from contract data._
+
 ## Product boundary
 
 Portal v2 is a static, read-only presentation surface for Home Stack. Home

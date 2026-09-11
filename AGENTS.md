@@ -11,7 +11,6 @@ This repo is the rich personal portal for Home Stack.
 - Development fixtures: `test/fixtures/*.json`, served only by Vite middleware under `/__fixtures/`.
 - Production catalog URL: `/.well-known/home-stack/catalog.json`.
 - Production status URL: `/.well-known/home-stack/status.json`.
-- Project-local deployment metadata: `.home-stack.yaml`.
 - Home Stack implements and owns both versioned, sanitized production projections.
 
 ## Implementation Guidance
@@ -35,7 +34,7 @@ This repo is the rich personal portal for Home Stack.
 
 ### Setup and Workflow
 - **Install dependencies**: `npm install`
-- **Development server**: `npm run dev` — starts local dev server at `http://127.0.0.1:31520/`
+- **Development server**: `npm run dev` — starts local dev server at `http://127.0.0.1:31600/`
 - **Production build**: `npm run build` — writes static output to `dist/`
 
 ### Catalog Fallback Behavior
